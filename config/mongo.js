@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
-const dbConnect = () => {
-    const DB_URI = process.env.DB_URI
+const NODE_ENV = process.env.NODE_ENV;
+
+const dbConnectNoSql = () => {
+
+    const DB_URI = (NODE_ENV === 'test') ? process.env.DB_URI_TEST : process.env.DB_URI;
     mongoose.connect(DB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -19,7 +22,7 @@ const dbConnect = () => {
 
 
 
-module.exports = dbConnect
+module.exports = dbConnectNoSql
 
 
 // mongodb+srv://oscarorjuelavargas:oscar80173807@cluster0.tzc1m9g.mongodb.net/?retryWrites=true&w=majority

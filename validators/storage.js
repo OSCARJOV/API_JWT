@@ -5,7 +5,7 @@ const validateResult = require("../utils/handleValidators");
 const validatorGetItem = [
     
 
-    check("id").exists().notEmpty().isMongoId(),
+    check("id").exists().notEmpty(), //.isMongoId()
 
     (req, res, next) => {
         return validateResult(req, res, next)

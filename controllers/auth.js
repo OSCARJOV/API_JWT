@@ -34,7 +34,7 @@ const { encrypt } = require("../utils/handlePassword");
             try {
                 req = matchedData(req);
                 const user = await userModel.findOne({email: req.email})
-                .select('password name email role') // como se hizo seteo y en modeols se dejo password- select:false se adiciona .select('password')
+            // Con mysql no funciona    .select('password name email role') // como se hizo seteo y en modeols se dejo password- select:false se adiciona .select('password')
 
                 if(!user){
                     handleHttpError(res, "USER_NOT_EXIST", 404);

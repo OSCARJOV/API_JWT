@@ -1,12 +1,15 @@
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const getProperties = require("./handlePropertiesEngine");
 const JWT_SECRET = process.env.JWT_SECRET;
+const propertiesKey = getProperties()  // lo renombro con propertiesKey para que se ejecute una sola vez
+
 
                                     // user es el objeto del usuario, aqui pongo el nombre que yo quiera pero en la funcion donde lo exporto le paso el argumento    
 const tokenSing = async(user) => {  // se pasan dos argumentos 1- payload
 const sign = jwt.sign(        //2-el secret
                                     //3- opcional tiempo de expircion expiresIn
     {
-        _id: user._id,
+        [propertiesKey.id]: user[propertiesKey.id],   //        _id: user._id,
         role:user.role
     },
     JWT_SECRET,
